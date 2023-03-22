@@ -2,7 +2,7 @@
 #include "pch.h"
 #include "..\rdrand\rdrand.h"
 
-BOOL APIENTRY DllMain( HMODULE hModule,
+BOOL APIENTRY RdRandDll( HMODULE hModule,
                        DWORD  ul_reason_for_call,
                        LPVOID lpReserved
                      )
@@ -18,12 +18,12 @@ BOOL APIENTRY DllMain( HMODULE hModule,
     return TRUE;
 }
 
-extern int Rdrand_16(uint16_t* x, int retry)
+extern int rdrand_16(uint16_t* x, int retry)
 {
     return rdrand_16(x, retry);
 }
 
-int Rdrand_get_bytes(unsigned int n, unsigned char* dest)
+int rdrand_get_bytes(unsigned int n, unsigned char* dest)
 {
     return rdrand_get_bytes(n, dest);
 }
