@@ -1,0 +1,8 @@
+LIBRARY rdrand
+	EXPORTS
+		rdrand_16
+		rdrand_32
+		rdrand_64
+		rdrand_get_n_64
+		rdrand_get_n_32
+		rdrand_get_bytes
