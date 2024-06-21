@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<BaseOutputPath>..\Build\</BaseOutputPath>
@@ -11,10 +11,11 @@
 		<Platforms>x64;x86</Platforms>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+		<StartupObject>CSharpTestApp.Program</StartupObject>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\RdrandManaged\RdrandManaged.csproj" />
+		<ProjectReference Include="..\RdrandManaged\IntelRandom.csproj" />
 	</ItemGroup>
 
 </Project>

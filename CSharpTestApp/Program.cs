@@ -1,4 +1,5 @@
 ﻿using RdrandManaged;
+using System.ComponentModel.DataAnnotations;
 using System.Net.NetworkInformation;
 
 namespace CSharpTestApp
@@ -7,7 +8,10 @@ namespace CSharpTestApp
     {
         static void Main(string[] args)
         {
-            int test = Rdrand.GetBytes(1000, new IntPtr(1000));
+            byte[] buffer = new byte[1024];
+            IntelRandom random = new IntelRandom();
+            buffer = random.GetBytes(1200);
+
         }
     }
 }

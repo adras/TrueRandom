@@ -156,7 +156,6 @@ int rdrand_32(uint32_t* x, int retry)
 
 int rdrand_64(uint64_t* x, int retry)
 {
-#ifdef _WIN64
 	if (RdRand_isSupported())
 	{
 		if (retry)
@@ -181,9 +180,6 @@ int rdrand_64(uint64_t* x, int retry)
 	{
 		return RDRAND_UNSUPPORTED;
 	}
-#else
-	return RDRAND_UNSUPPORTED;
-#endif
 }
 
 int rdrand_get_n_64(unsigned int n, uint64_t *dest)
@@ -226,15 +222,15 @@ int rdrand_get_n_32(unsigned int n, uint32_t *dest)
 
 int rdrand_get_bytes(unsigned int n, unsigned char *dest)
 {
-	unsigned char *start = NULL;
-	unsigned char *residualstart = NULL;
+	unsigned char *start;
+	unsigned char *residualstart;
 	_wordlen_t *blockstart;
 	_wordlen_t i, temprand;
-	unsigned int count = 0;
-	unsigned int residual = 0;
-	unsigned int startlen = 0;
-	unsigned int length = 0;
-	int success = 0;
+	unsigned int count;
+	unsigned int residual;
+	unsigned int startlen;
+	unsigned int length;
+	int success;
 
 	/* Compute the address of the first 32- or 64- bit aligned block in the destination buffer, depending on whether we are in 32- or 64-bit mode */
 	start = dest;
@@ -257,6 +253,12 @@ int rdrand_get_bytes(unsigned int n, unsigned char *dest)
 	if (residual != 0)
 	{
 		residualstart = (unsigned char *)(blockstart + length);
+	}
+	else
+	{
+		// TODO: Figure out when this else branch is used
+		// we're trying to avoid a compiler error which said residualstart might be not initialized
+		residualstart = (unsigned char*)(blockstart + length);
 	}
 
 	/* Get a temporary random number for use in the residuals. Failout if retry fails */

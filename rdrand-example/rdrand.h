@@ -29,7 +29,6 @@ POSSIBILITY OF SUCH DAMAGE. */
  * This is the public header for the rdrand API. It exposes the three public 
  * APIs, which access the rdrand instruction for various data sizes.
  */
-
 #ifndef RDRAND_H
 #define RDRAND_H
 
@@ -41,6 +40,13 @@ POSSIBILITY OF SUCH DAMAGE. */
 	typedef unsigned __int32 uint32_t;
 	typedef unsigned __int64 uint64_t;
 #endif
+
+#ifdef RDRAND_EXPORTS
+#define RDRAND_API __declspec(dllexport)
+#else
+#define RDRAND_API __declspec(dllimport)
+#endif
+
 
 /*! \def RDRAND_SUCCESS
  *   The rdrand call was successful, the hardware was ready, and a random 
